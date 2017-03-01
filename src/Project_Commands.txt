@@ -1,0 +1,62 @@
+
+Readme:
+
+In the controller window:
+   Run the controller in a new window with: 
+   ryu-manager --verbose /home/mininet/flowcontrol.py --observe-links
+	
+   or in general:
+   ryu-manager --verbose (path to the flowcontrol.py file) --observer-links 
+
+   You can add a -x flag at the end of this command to open up terminals for each node in the network 
+
+In the second window:
+   Our topology is in the topo.py file and can be called from the command line with mytopo
+      Running the topology in mininet with:
+      sudo mn --custom topo.py --topo mytopo --controller remote --link tc -x
+
+   Once both the controller and the mininet topology is up and running, you can ping h1 to h2
+      Note: You may have to ping one of the switches first inorder to connect properly to h2
+      h1 ping -c 3 h2 		this command will send 3 ping request to h2's ip address
+      
+
+Check TCP connection over HTTP server 
+   h1 python -m SimpleHTTPServer 80 &
+   h2 wget -O - h1
+
+Check TCP connection using iperf command 
+   From h1:
+
+
+      iperf -s -u -i 1 -p 6585
+   From h2:
+
+
+      iperf -c 10.0.0.1 -p 6585-u -b 1M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
